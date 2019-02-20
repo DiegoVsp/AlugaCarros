@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Carro } from '../modelos/carro';
 
 @Component({
   selector: 'app-home',
@@ -7,25 +8,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePage implements OnInit{
   
-  public carros;
+  public carros: Carro[];
 
   ngOnInit(): void {
     this.carros = [
       {
-        "nome":"Fusca",
-        "preco": 1000
+        nome:"Fusca",
+        preco: 1000
       },
       {
-        "nome":"Gol",
-        "preco": 2000
+        nome:"Gol",
+        preco: 2000
       },
       {
-        "nome":"Ferrari",
-        "preco": 2000
+        nome:"Ferrari",
+        preco: 2000
       },
       {
-        "nome":"Astra",
-        "preco": 3000
+        nome:"teste",
+        preco: 5000
+      },
+
+      {
+        nome:"Astra",
+        preco: 3000
       },
 
     ]
