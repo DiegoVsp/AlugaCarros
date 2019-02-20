@@ -8,7 +8,10 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item><ion-label> Carro01 </ion-label></ion-item>
-    <ion-item><ion-label> Carro02 </ion-label></ion-item>
+    <ion-item *ngFor="let carro of carros">
+        <ion-label>  {{carro.nome}} </ion-label>
+        <ion-label>  {{carro.preco}} </ion-label>
+    </ion-item>
+    
   </ion-list>
 </ion-content>
