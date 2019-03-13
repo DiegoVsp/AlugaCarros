@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpErrorResponse} from '@angular/common/http';
-import { Carro } from '../modelos/Carro';
+import { carro } from '../modelos/carro';
 import { LoadingController, AlertController } from '@ionic/angular';
 import { CarrosService } from '../providers/carros.service';
 
@@ -10,7 +10,7 @@ import { CarrosService } from '../providers/carros.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit{
-  public carros: Carro[];
+  public carros: carro[];
 
   constructor(private loadingCtrl:LoadingController,
               private alertCtrl:AlertController,
