@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Carro } from '../modelos/carro';
-import {HttpClient} from '@angular/common/http';
+import {HttpErrorResponse} from '@angular/common/http';
+import { Carro } from '../modelos/Carro';
+import { LoadingController, AlertController } from '@ionic/angular';
+import { CarrosService } from '../providers/carros.service';
 
 @Component({
   selector: 'app-home',
@@ -8,18 +10,38 @@ import {HttpClient} from '@angular/common/http';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit{
-  
   public carros: Carro[];
 
-  constructor(public http:HttpClient){
-
+  constructor(private loadingCtrl:LoadingController,
+              private alertCtrl:AlertController,
+              private carrosService: CarrosService){
   }
+  
+  async ngOnInit() {
+    const loading = await this.loadingCtrl.create({
+      message:'Aguarde enquanto os carros são carregados...'
+    });
 
-  ngOnInit(): void {
-    this.http.get<Carro[]>('http://localhost:8080/api/carro/listaTodos')
+    await loading.present();
+
+    this.carrosService.lista()
     .subscribe(
       (carros)=>{
         this.carros = carros;
+      },
+      async (err: HttpErrorResponse)=>{
+        console.log('Deu erro ' + err.status);
+        const al = await this.alertCtrl.create({
+          header:'Erro!',
+          message: 'Erro ao listar carros',
+          buttons: [{text: 'OK'}]
+        });
+
+        await al.present();
+      }
+    ).add(
+      ()=>{
+        loading.dismiss();
       }
     )
   }
