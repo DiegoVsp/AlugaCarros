@@ -1,7 +1,7 @@
 import { CarrosService } from './../providers/carros.service';
 import { Component, OnInit } from '@angular/core';
 import {HttpErrorResponse} from '@angular/common/http';
-import { carro } from '../modelos/carro';
+import { Carro } from '../modelos/carro';
 import { LoadingController, AlertController, NavController } from '@ionic/angular';
 import { NavigationExtras } from '@angular/router';
 
@@ -11,7 +11,7 @@ import { NavigationExtras } from '@angular/router';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit{
-  public carros: carro[];
+  public carros: Carro[];
 
   constructor(private loadingCt: LoadingController,
               private alertCtrl: AlertController,
@@ -48,7 +48,7 @@ export class HomePage implements OnInit{
     );
 
   }
-  selecionaCarro(Carro: carro){
+  selecionaCarro(Carro: Carro){
     console.log('Carro selecionado: ${Carro.nome}');
     
     let extras: NavigationExtras = {
