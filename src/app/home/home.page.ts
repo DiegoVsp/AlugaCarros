@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpErrorResponse} from '@angular/common/http';
 import { carro } from '../modelos/carro';
-import { LoadingController, AlertController } from '@ionic/angular';
+import { LoadingController, AlertController, NavController } from '@ionic/angular';
 import { CarrosService } from '../providers/carros.service';
 
 @Component({
@@ -12,13 +12,14 @@ import { CarrosService } from '../providers/carros.service';
 export class HomePage implements OnInit{
   public carros: carro[];
 
-  constructor(private loadingCtrl:LoadingController,
-              private alertCtrl:AlertController,
-              private carrosService: CarrosService){
-  }
-  
+  constructor(private loadingCt: LoadingController,
+              private alertCtrl: AlertController,
+              private carrosService: CarrosService,
+              private navCtrl: NavController) { }
+
+
   async ngOnInit() {
-    const loading = await this.loadingCtrl.create({
+    const loading = await this.loadingCt.create({
       message:'Aguarde enquanto os carros são carregados...'
     });
 
@@ -26,13 +27,13 @@ export class HomePage implements OnInit{
 
     this.carrosService.lista()
     .subscribe(
-      (carros)=>{
+      (carros) => {
         this.carros = carros;
       },
-      async (err: HttpErrorResponse)=>{
+      async (err: HttpErrorResponse) => {
         console.log('Deu erro ' + err.status);
         const al = await this.alertCtrl.create({
-          header:'Erro!',
+          header: 'Erro!',
           message: 'Erro ao listar carros',
           buttons: [{text: 'OK'}]
         });
@@ -40,9 +41,15 @@ export class HomePage implements OnInit{
         await al.present();
       }
     ).add(
-      ()=>{
+      () => {
         loading.dismiss();
       }
-    )
+    );
+
   }
+  selecionaCarro(Carro: carro){
+    console.log('Carro selecionado: ${Carro.nome}');
+    this.navCtrl.navigateForward('escolha');
+  }
+
 }
