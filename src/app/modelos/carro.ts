@@ -1,4 +1,4 @@
-export interface carro{
+export interface Carro{
     nome:string
     preco:number
 }
