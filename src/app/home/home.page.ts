@@ -12,6 +12,7 @@ import { NavigationExtras } from '@angular/router';
 })
 export class HomePage implements OnInit{
   public carros: Carro[];
+<<<<<<< HEAD
 
   constructor(private loadingCtrl:LoadingController,
               private alertCtrl:AlertController,
@@ -19,8 +20,19 @@ export class HomePage implements OnInit{
               private navCtrl: NavController){
   }
   
+=======
+
+  constructor(private loadingCt: LoadingController,
+              private alertCtrl: AlertController,
+              private carrosService: CarrosService,
+              private navCtrl: NavController) {
+
+               }
+
+
+>>>>>>> seleciona_carro
   async ngOnInit() {
-    const loading = await this.loadingCtrl.create({
+    const loading = await this.loadingCt.create({
       message:'Aguarde enquanto os carros são carregados...'
     });
 
@@ -28,13 +40,13 @@ export class HomePage implements OnInit{
 
     this.carrosService.lista()
     .subscribe(
-      (carros)=>{
+      (carros) => {
         this.carros = carros;
       },
-      async (err: HttpErrorResponse)=>{
+      async (err: HttpErrorResponse) => {
         console.log('Deu erro ' + err.status);
         const al = await this.alertCtrl.create({
-          header:'Erro!',
+          header: 'Erro!',
           message: 'Erro ao listar carros',
           buttons: [{text: 'OK'}]
         });
@@ -42,9 +54,10 @@ export class HomePage implements OnInit{
         await al.present();
       }
     ).add(
-      ()=>{
+      () => {
         loading.dismiss();
       }
+<<<<<<< HEAD
     )
   } 
 
@@ -61,3 +74,21 @@ export class HomePage implements OnInit{
   }
 
 }
+=======
+    );
+
+  }
+  selecionaCarro(carro: Carro){
+    console.log('Carro selecionado:'+ carro.nome);
+    
+    let extras: NavigationExtras = {
+      queryParams:{
+        CarrosService: JSON.stringify(carro),
+      }
+    };
+
+    this.navCtrl.navigateForward(['escolha'], extras);
+  }
+
+}
+>>>>>>> seleciona_carro
