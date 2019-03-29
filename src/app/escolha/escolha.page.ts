@@ -1,7 +1,7 @@
 import { NavController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Carro } from './../modelos/carro';
+import { Carro } from '../modelos/Carro';
 
 
 @Component({

@@ -1,8 +1,8 @@
-import { CarrosService } from './../providers/carros.service';
 import { Component, OnInit } from '@angular/core';
 import {HttpErrorResponse} from '@angular/common/http';
-import { Carro } from '../modelos/carro';
+import { Carro } from '../modelos/Carro';
 import { LoadingController, AlertController, NavController } from '@ionic/angular';
+import { CarrosService } from '../providers/carros.service';
 import { NavigationExtras } from '@angular/router';
 
 @Component({
@@ -16,7 +16,9 @@ export class HomePage implements OnInit{
   constructor(private loadingCt: LoadingController,
               private alertCtrl: AlertController,
               private carrosService: CarrosService,
-              private navCtrl: NavController) { }
+              private navCtrl: NavController) {
+
+               }
 
 
   async ngOnInit() {
@@ -48,14 +50,14 @@ export class HomePage implements OnInit{
     );
 
   }
-  selecionaCarro(Carro: Carro){
-    console.log('Carro selecionado: ${Carro.nome}');
+  selecionaCarro(carro: Carro){
+    console.log('Carro selecionado:'+ carro.nome);
     
     let extras: NavigationExtras = {
       queryParams:{
-        CarrosService: JSON.stringify(Carro),
+        CarrosService: JSON.stringify(carro),
       }
-    }
+    };
 
     this.navCtrl.navigateForward(['escolha'], extras);
   }
