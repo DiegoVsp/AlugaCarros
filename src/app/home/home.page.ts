@@ -57,7 +57,6 @@ export class HomePage implements OnInit{
       () => {
         loading.dismiss();
       }
-<<<<<<< HEAD
     )
   } 
 
@@ -74,21 +73,3 @@ export class HomePage implements OnInit{
   }
 
 }
-=======
-    );
-
-  }
-  selecionaCarro(carro: Carro){
-    console.log('Carro selecionado:'+ carro.nome);
-    
-    let extras: NavigationExtras = {
-      queryParams:{
-        CarrosService: JSON.stringify(carro),
-      }
-    };
-
-    this.navCtrl.navigateForward(['escolha'], extras);
-  }
-
-}
->>>>>>> seleciona_carro
