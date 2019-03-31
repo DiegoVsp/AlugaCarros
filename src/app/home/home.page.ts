@@ -12,7 +12,6 @@ import { NavigationExtras } from '@angular/router';
 })
 export class HomePage implements OnInit{
   public carros: Carro[];
-<<<<<<< HEAD
 
   constructor(private loadingCtrl:LoadingController,
               private alertCtrl:AlertController,
@@ -20,19 +19,8 @@ export class HomePage implements OnInit{
               private navCtrl: NavController){
   }
   
-=======
-
-  constructor(private loadingCt: LoadingController,
-              private alertCtrl: AlertController,
-              private carrosService: CarrosService,
-              private navCtrl: NavController) {
-
-               }
-
-
->>>>>>> seleciona_carro
   async ngOnInit() {
-    const loading = await this.loadingCt.create({
+    const loading = await this.loadingCtrl.create({
       message:'Aguarde enquanto os carros são carregados...'
     });
 
