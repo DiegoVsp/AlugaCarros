@@ -10,6 +10,8 @@ import { Carro } from '../modelos/Carro';
   styleUrls: ['./escolha.page.scss'],
 })
 export class EscolhaPage implements OnInit {
+  
+  public toggle:boolean = true;
 
 private carro: Carro
 
