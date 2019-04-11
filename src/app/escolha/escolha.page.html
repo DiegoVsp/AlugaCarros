@@ -20,27 +20,19 @@
       </ion-item-group>
       <ion-item-group>
         <ion-item-divider color="light">
-          <ion-icon name="options"></ion-icon>
+          <ion-icon name="option"></ion-icon>
           Acessórios
         </ion-item-divider>        
-        <ion-item>
-          <ion-label [(ngModel)]="toggle"> Freio ABS <ion-label>800</ion-label> </ion-label>         
-          <ion-toggle ></ion-toggle>
-                           
-        </ion-item>   
-        <ion-item>
-          <ion-label [(ngModel)]="toggle">Ar-Condicionado <ion-label>1000</ion-label></ion-label>          
-          <ion-toggle ></ion-toggle>
-                           
-        </ion-item>   
-        <ion-item>
-          <ion-label [(ngModel)]="toggle">MP3 Player <ion-label>500</ion-label></ion-label>          
-          <ion-toggle ></ion-toggle>
-                          
-        </ion-item>      
-
+        <ion-item *ngFor = 'let escolha of acessorios'>
+          <ion-label>
+            <h2>{{escolha.acessorios}}</h2>
+            <h4>R$ {{escolha.preco}}</h4>
+          </ion-label>
+          <ion-toggle></ion-toggle>
+        </ion-item>
       </ion-item-group>
-      <ion-item-divider color="light">
+
+      <ion-item-divider color="danger">
         Total: R$ 1000
       </ion-item-divider>
       <ion-fab vertical="bottom" horizontal="end" slot="fixed">
