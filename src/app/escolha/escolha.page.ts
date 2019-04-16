@@ -14,13 +14,12 @@ export class EscolhaPage implements OnInit {
  
 
 private carro: Carro
+private acessorios = [];
 
   constructor(private navCtrl: NavController,
-    private activatedRoute: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute) { }    
 
-    acessorios = [{acessorios: 'Freio Abs', preco:800},
-                  {acessorios: 'Ar-Condicionado', preco: 1000},
-                  {acessorios: 'MP3 player', preco: 500}]
+    
 
   ngOnInit() {
 this.activatedRoute.queryParams
@@ -28,6 +27,14 @@ this.activatedRoute.queryParams
   this.carro = <Carro>JSON.parse(params['carroSelecionado']);
   console.log('O carro que chegou na pagina de escolha é: ' + this.carro.nome);
 });
+
+this.acessorios = [
+  {nome: "Freio ABS", preco:800},
+  {nome: "Ar-Condicionado", preco:1000},
+  {nome: "MP3 Player", preco:500},
+]
+
+
   }
 
   voltar() {
