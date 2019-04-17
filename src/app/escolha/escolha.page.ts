@@ -2,7 +2,7 @@ import { NavController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Carro } from '../modelos/Carro';
-import { Acessorios } from '../itens/acessorios';
+import { Acessorio } from '../modelos/Acessorio';
 
 
 @Component({
@@ -14,8 +14,12 @@ export class EscolhaPage implements OnInit {
   
  
 
-private carro: Carro
-public Acessorios: Acessorios[];
+  private carro: Carro
+
+  private acessorios: Acessorio[];
+
+  private precoTotal: number;
+
 
   constructor(private navCtrl: NavController,
     private activatedRoute: ActivatedRoute) { }  
@@ -25,21 +29,23 @@ public Acessorios: Acessorios[];
   ngOnInit() {
 this.activatedRoute.queryParams
 .subscribe(params => {
-  this.carro = <Carro>JSON.parse(params['carroSelecionado']);
+  this.carro = <Carro>JSON.parse(params["carroSelecionado"]);
   console.log('O carro que chegou na pagina de escolha é: ' + this.carro.nome);
 });
 
-this.Acessorios = [
+this.precoTotal = this.carro.preco;
+
+this.acessorios = [
   {nome: "Freio ABS", preco:800},
   {nome: "Ar-Condicionado", preco:1000},
   {nome: "MP3 Player", preco:500},
-]
-
-
+];
+  }
+  atualizarTotal(ativo:boolean, acessorio: Acessorio){
+    ativo ? this.precoTotal += acessorio.preco : this.precoTotal -= acessorio.preco
   }
 
   voltar() {
     this.navCtrl.back();
   }
-
 }
