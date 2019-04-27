@@ -1,6 +1,6 @@
 import { NavController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationExtras } from '@angular/router';
 import { Carro } from '../modelos/Carro';
 import { Acessorio } from '../modelos/Acessorio';
 
@@ -45,7 +45,16 @@ this.acessorios = [
     ativo ? this.precoTotal += acessorio.preco : this.precoTotal -= acessorio.preco
   }
 
-  voltar() {
-    this.navCtrl.back();
+  
+  
+  avancaCadastro(carro: Carro){    
+
+    let extras: NavigationExtras = {
+      queryParams:{
+        carroSelecionado: JSON.stringify(this.carro),
+        precoTotal: this.precoTotal
+      }
+    };
+    this.navCtrl.navigateForward(['cadastro'], extras);
   }
 }
